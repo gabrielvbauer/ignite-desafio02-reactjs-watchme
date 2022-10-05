@@ -13,17 +13,10 @@ export interface GenreResponseProps {
 type SideBarProps = {
   selectedGenreId: number;
   onClickButton: (id: number) => void;
+  genres: GenreResponseProps[];
 }
 
-export function SideBar({selectedGenreId, onClickButton}: SideBarProps) {
-  const [genres, setGenres] = useState<GenreResponseProps[]>([])
-
-  useEffect(() => {
-    api.get<GenreResponseProps[]>('genres').then(response => {
-      setGenres(response.data);
-    });
-  }, []);
-
+export function SideBar({onClickButton, genres, selectedGenreId}: SideBarProps) {
   return (
     <nav className="sidebar">
       <span>Watch<p>Me</p></span>
